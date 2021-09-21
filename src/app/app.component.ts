@@ -13,7 +13,7 @@ export class AppComponent {
   dirDemo = 'Directive Demo';
   
   onDemoChange(event: any): void {
-    
+    // Test Comment
     this.selectedDemo = event.target.value;
   }
 }
