@@ -1,0 +1,106 @@
+<style>
+    .form-field {
+        padding: 2px;
+    }
+
+    .background-grey {
+        background-color: lightgray
+    }
+
+    .input-field {
+        width: 200px
+    }
+
+    .table-col-header {
+        width: 100px;
+    }
+
+    .table-col {
+        padding: 10px 20px 10px 10px;
+    }
+
+    .request-form {
+        padding: 10px 80px;
+    }
+
+    .order-grid {
+        padding: 20px;
+        margin: 30px;
+    }
+</style>
+<track-by title='trackByTitle'></track-by>
+<div>
+    <div>
+        <h3> New Request: </h3>
+        <form class="background-grey request-form" [formGroup]="requestForm">
+            <div class="form-field">
+                <label>
+                    Assigned To:
+                </label>
+                <input class="input-field" formControlName="assignedTo">
+            </div>
+            <br>
+            <div class="form-field">
+                <label>
+                    Priority:
+                </label>
+                <input class="input-field" formControlName="priority" priorityParser>
+            </div>
+            <br>
+            <div class="form-field">
+                <label>
+                    Description:
+                </label>
+                <input class="input-field" formControlName="desc">
+            </div>
+            <br>
+            <div class="form-field">
+                <label>
+                    Requestor:
+                </label>
+                <input class="input-field" formControlName="requestor">
+            </div>
+            <div class="form-field">
+                <button type="submit" (click)="onSubmit()">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+    <h3> Requests: </h3>
+
+    <div *ngIf="assignedToFilter$ | async as assignedToFilter">
+        Filter by Assigned To:
+        <select>
+            <option *ngFor="let at of assignedToFilter"> {{ at.assignedTo }}({{ at.total}}) </option>
+        </select>
+    </div>
+    <div>
+        <button type="submit" (click)="loadData()">
+            Refresh
+        </button>
+    </div>
+    <div class="order-grid background-grey">
+        <table>
+            <tr>
+                <th class="table-col-header"> Action </th>
+                <th class="table-col-header"> Assigned To </th>
+                <th class="table-col-header"> Priority </th>
+                <th class="table-col-header"> Description </th>
+            </tr>
+            <tr *ngFor="let request of requests$ | async as requests">
+                <td class="table-col">
+                    <button (click)="viewRequestDetails(request.requestId)">View</button>
+                </td>
+                <td class="table-col">{{request.assignedTo | uppercase }}</td>
+                <td class="table-col">{{request.priority}}</td>
+                <td class="table-col">{{request.desc}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="request-detail background-grey" *ngIf="requestDetail$ | async as reqDetail">
+        <div class="form-field">
+            Description: {{reqDetail.desc}}
+        </div>
+    </div>
+</div>

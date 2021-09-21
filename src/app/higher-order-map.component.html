@@ -1,0 +1,33 @@
+<div>
+    Without SwitchMap, if you click quickly, first click will not be cancelled: {{ dataImperitive }}
+    <br> With SwitchMap, if you click quickly, first click will be cancelled: {{ dataSwitchMap$ | async }}
+    <br> With ExhaustMap, if you click quickly, first click will not be cancelled: {{ dataExhaustMap$ | async }}
+    <br> With MapTo, Is Event Emitted: {{ dataMapTo$ | async }}
+    <br>
+    <br>
+    <button (click)="getData()">
+        Get Data
+    </button>
+</div>
+
+<style>
+    /* Element selector */
+    h2 {
+        background-color: green
+    }
+
+    /* Class Selector */
+    .primary {
+        background-color: green
+    }
+
+    /* Id Selector */
+    #orders, #requests {
+        background-color: green
+    }
+
+    /* Nested Selector */
+    #orders p {
+        background-color: green
+    }
+</style>

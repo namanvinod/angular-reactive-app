@@ -1,0 +1,36 @@
+<div class="select-demo">
+    <select (change)="onDemoChange($event)">
+        <option> </option>
+        <option> Reactive Form Demo </option>
+        <option> Higher Order Map Demo </option>
+        <!-- <option> Pipe Demo </option> -->
+        <option> Track By Demo </option>
+        <option> Routing Demo </option>
+        <option> ng-container Demo </option>
+        <option> ngRx Store Demo </option>
+        <option> View Encapsulation and Shadow DOM Demo </option>
+        <option> Directive Demo </option>
+    </select>
+</div>
+
+<div class="content">
+    <div [ngSwitch]="selectedDemo">
+        <div *ngSwitchCase="'Reactive Form Demo'">
+            <request-dashboard></request-dashboard>
+        </div>
+        <div *ngSwitchCase="'Higher Order Map Demo'">
+            <higher-order-map></higher-order-map>
+        </div>
+        <div *ngSwitchCase="'Track By Demo'">
+            <track-by></track-by>
+        </div>
+        <div *ngSwitchCase="'View Encapsulation and Shadow DOM Demo'">
+            <view-encap></view-encap>
+            <view-encap-sib></view-encap-sib>
+        </div>
+        <div *ngSwitchCase="dirDemo">
+            <directive-prop-demo #d="ddc" (click)="d.test('Test Message')">Click Here to Log</directive-prop-demo>
+            <directive-demo></directive-demo>
+        </div>
+    </div>
+</div>

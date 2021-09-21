@@ -1,0 +1,9 @@
+{{ title }}
+
+<div *ngFor="let item of items; trackBy: trackByFn">
+    {{item.itemId}} - {{item.name | uppercase: 1: 'asd': true: { name: 'Name'} }}
+</div>
+<button type="submit" (click)="add()"> Add </button>
+<button type="submit" (click)="remove()"> Remove </button>
+<button type="submit" (click)="update()"> Update </button>
+<button type="submit" (click)="refresh()"> Refresh </button>
